@@ -12,6 +12,7 @@ help: ## print this help message.
 ## test
 .PHONY: test
 test: ## run test suite.
+	pip install .
 	pytest
 	@echo -e "\n=> pytest done. \n\n"
 
@@ -38,6 +39,7 @@ check-codestyle: flake8 isort black ## run all codestyle check.
 ## security
 .PHONY: safety
 safety: ## run safety check (codestyle).
+	pip install .
 	safety check --full-report
 	@echo -e "\n=> safety done. \n\n"
 
