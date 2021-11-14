@@ -3,7 +3,7 @@ from unittest import TestCase
 import pytest
 
 from todo_sample.entities.todo import Todo
-from todo_sample.use_cases.exceptions import GetTodoInvalidIdFormatException, GetTodoNotFoundException
+from todo_sample.use_cases.exceptions import TodoInvalidIdFormatException, TodoNotFoundException
 from todo_sample.use_cases.get_todo import GetTodo
 
 MODULE = "todo_sample.use_cases.get_todo"
@@ -31,7 +31,7 @@ class TestGetTodo(TestCase):
         fake_id = "some-wrong-format-id"
         try:
             self.get_todo_uc.call(id=fake_id)
-        except GetTodoInvalidIdFormatException as exc:
+        except TodoInvalidIdFormatException as exc:
             assert fake_id in str(exc)
 
     def test_get_todo_not_found(self):
@@ -39,7 +39,7 @@ class TestGetTodo(TestCase):
 
         try:
             self.get_todo_uc.call(id=str(self.fake_todo.id))
-        except GetTodoNotFoundException as exc:
+        except TodoNotFoundException as exc:
             assert str(self.fake_todo.id) in str(exc)
 
         self.fake_todo_repository.find_by_id.assert_called_once_with(id=self.fake_todo.id)

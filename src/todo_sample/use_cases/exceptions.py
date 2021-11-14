@@ -10,19 +10,19 @@ class CreateTodoAlreadyExistException(CreateTodoException):
     pass
 
 
-class GetTodoException(Exception):
-    """GetTodoException"""
+class TodoException(Exception):
+    """TodoException"""
 
     pass
 
 
-class GetTodoInvalidIdFormatException(GetTodoException):
-    """GetTodoInvalidIdFormatException"""
+class TodoInvalidIdFormatException(TodoException):
+    """TodoInvalidIdFormatException"""
 
     pass
 
 
-class GetTodoNotFoundException(GetTodoException):
-    """GetTodoNotFoundException"""
+class TodoNotFoundException(TodoException):
+    """TodoNotFoundException"""
 
     pass
