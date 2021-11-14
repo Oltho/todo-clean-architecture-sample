@@ -6,9 +6,13 @@ class CreateTodoAlreadyExistException(CreateTodoException):
     """CreateTodoAlreadyExistException"""
 
 
-class GetTodoInvalidIdFormatException(Exception):
+class GetTodoException(Exception):
+    """GetTodoException"""
+
+
+class GetTodoInvalidIdFormatException(GetTodoException):
     """GetTodoInvalidIdFormatException"""
 
 
-class GetTodoNotFoundException(Exception):
+class GetTodoNotFoundException(GetTodoException):
     """GetTodoNotFoundException"""
