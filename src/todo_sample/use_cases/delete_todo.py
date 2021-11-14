@@ -1,6 +1,5 @@
 from uuid import UUID
 
-from todo_sample.entities.todo import Todo
 from todo_sample.repository.todo_repository import TodoRepository
 
 from .exceptions import TodoInvalidIdFormatException, TodoNotFoundException
@@ -10,7 +9,7 @@ class DeleteTodo:
     def __init__(self, todo_repo: TodoRepository) -> None:
         self.todo_repo = todo_repo
 
-    def call(self, id: str) -> Todo:
+    def call(self, id: str) -> None:
         """Delete a Todo by its ID
 
         Args:
