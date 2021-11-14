@@ -62,6 +62,9 @@ You can then use the same command as defined in `tox.ini` under `commands` secti
 
 These same command are in the `Makefile` and can be use with `make`, but we recommand to run it through `tox` to ensure clean and isolated python enviroment.
 
+You might need to update your `PYTHONPATH` so your tests can detect code in `src`: `export PYTHONPATH=<path_to_the_project>/src`
+
+
 # Todo
 
 - Integration of SonarQube
