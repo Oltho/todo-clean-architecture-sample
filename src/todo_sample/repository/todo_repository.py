@@ -7,11 +7,22 @@ from todo_sample.entities.todo import Todo
 
 class TodoRepository(ABCMeta):
     @abstractmethod
-    def create(self, todo: Todo) -> Todo:
-        raise NotImplementedError
+    def save(self, todo: Todo, create_only: bool = True) -> Todo:
+        """Create or update a Todo object in repository
 
-    @abstractmethod
-    def update(self, todo: Todo) -> Todo:
+        Args:
+            todo (Todo): Todo object to save
+            create_only (bool, optional):
+                If True will raise `AlreadyExistError` if a Todo with same `id` already exist
+                If false will either create a new object or update the one with the same `id`.
+                Defaults to True.
+
+        Raises:
+            AlreadyExistError: raise when trying to save an Todo that already exist
+
+        Returns:
+            Todo: the object that has been saved
+        """
         raise NotImplementedError
 
     @abstractmethod
