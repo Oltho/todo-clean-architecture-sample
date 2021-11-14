@@ -41,7 +41,7 @@ class TestGetTodo(TestCase):
         try:
             self.delete_todo_uc.call(id=str(self.fake_todo.id))
         except TodoNotFoundException as exc:
-            assert str(self.fake_todo.id) in str(exc)
+            assert exc.id == self.fake_todo.id
 
         self.fake_todo_repository.find_by_id.assert_called_once_with(id=self.fake_todo.id)
         self.fake_todo_repository.delete.assert_not_called()

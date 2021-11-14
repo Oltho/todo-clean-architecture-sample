@@ -31,7 +31,7 @@ class DeleteTodo:
         todo = self.todo_repo.find_by_id(id=id_uuid)
 
         if not todo:
-            raise TodoNotFoundException(f"Todo with id:{id} not found.")
+            raise TodoNotFoundException(id=id_uuid)
 
         self.todo_repo.delete(id=id_uuid)
 
