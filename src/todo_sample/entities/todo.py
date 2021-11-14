@@ -10,7 +10,7 @@ class Todo(BaseModel):
     description: str
     done: bool = False
     created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = None  # value assigned by validator
+    updated_at: datetime = None  # type: ignore  # value assigned by validator
 
     @validator("updated_at", pre=True, always=True)
     def default_updated_at(cls, v, values, **kwargs):
