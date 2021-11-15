@@ -1,8 +1,6 @@
-from uuid import UUID
-
 from todo_sample.repository.todo_repository import TodoRepository
 
-from .exceptions import TodoInvalidIdFormatException, TodoNotFoundException
+from .get_todo import GetTodo
 
 
 class DeleteTodo:
@@ -22,16 +20,8 @@ class DeleteTodo:
         Returns:
 
         """
-        try:
-            id_uuid = UUID(id)
-        except ValueError as exc:
-            raise TodoInvalidIdFormatException(f"{id} is not a valid UUID4 format.") from exc
+        todo = GetTodo(todo_repo=self.todo_repo).call(id=id)
 
-        todo = self.todo_repo.find_by_id(id=id_uuid)
-
-        if not todo:
-            raise TodoNotFoundException(id=id_uuid)
-
-        self.todo_repo.delete(id=id_uuid)
+        self.todo_repo.delete(id=todo.id)
 
         return None
