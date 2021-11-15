@@ -33,6 +33,6 @@ class TestCreateTodo(TestCase):
         try:
             self.create_todo_uc.call(title="title", description="description")
         except TodoAlreadyExistException as exc:
-            assert str(self.fake_todo.id) in str(exc)
+            assert exc.id == self.fake_todo.id
 
         self.fake_todo_repository.save.assert_called_once_with(todo=self.fake_todo, create_only=True)

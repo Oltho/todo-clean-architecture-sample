@@ -15,6 +15,6 @@ class CreateTodo:
         try:
             self.todo_repo.save(todo=todo, create_only=True)
         except AlreadyExistError as exc:
-            raise TodoAlreadyExistException(f"Todo with same id:{todo.id} already exist.") from exc
+            raise TodoAlreadyExistException(id=todo.id) from exc
 
         return todo
