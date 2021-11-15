@@ -1,6 +1,6 @@
 from todo_sample.repository.todo_repository import TodoRepository
 
-from .get_todo import GetTodo
+from . import get_todo
 
 
 class DeleteTodo:
@@ -20,7 +20,7 @@ class DeleteTodo:
         Returns:
 
         """
-        todo = GetTodo(todo_repo=self.todo_repo).call(id=id)
+        todo = get_todo.GetTodo(todo_repo=self.todo_repo).call(id=id)
 
         self.todo_repo.delete(id=todo.id)
 
