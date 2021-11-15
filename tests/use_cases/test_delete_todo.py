@@ -1,10 +1,10 @@
-from unittest import TestCase, mock
+from unittest import TestCase
 
 import pytest
 
 from todo_sample.entities.todo import Todo
 from todo_sample.use_cases.delete_todo import DeleteTodo
-from todo_sample.use_cases.exceptions import TodoInvalidIdFormatException
+from todo_sample.use_cases.exceptions import TodoInvalidIdFormatException, TodoNotFoundException
 
 MODULE = "todo_sample.use_cases.delete_todo"
 
@@ -19,18 +19,12 @@ class TestGetTodo(TestCase):
         self.fake_todo_repository = mocker.Mock()
         self.delete_todo_uc = DeleteTodo(todo_repo=self.fake_todo_repository)
 
-    @mock.patch(f"{MODULE}.get_todo.GetTodo")
-    def test_delete_todo(self, mocked_gettodo):
-        fake_gettodo = mock.Mock()
-        fake_gettodo.call.return_value = self.fake_todo
-        mocked_gettodo.return_value = fake_gettodo
+    def test_delete_todo(self):
+        self.fake_todo_repository.find_by_id.return_value = self.fake_todo
 
-        id_str = str(self.fake_todo.id)
+        ret = self.delete_todo_uc.call(id=str(self.fake_todo.id))
 
-        ret = self.delete_todo_uc.call(id=id_str)
-
-        mocked_gettodo.assert_called_once_with(todo_repo=self.fake_todo_repository)
-        fake_gettodo.call.assert_called_once_with(id=id_str)
+        self.fake_todo_repository.find_by_id.assert_called_once_with(id=self.fake_todo.id)
         self.fake_todo_repository.delete.assert_called_once_with(id=self.fake_todo.id)
         assert ret is None
 
@@ -40,3 +34,14 @@ class TestGetTodo(TestCase):
             self.delete_todo_uc.call(id=fake_id)
         except TodoInvalidIdFormatException as exc:
             assert fake_id in str(exc)
+
+    def test_get_todo_not_found(self):
+        self.fake_todo_repository.find_by_id.return_value = None
+
+        try:
+            self.delete_todo_uc.call(id=str(self.fake_todo.id))
+        except TodoNotFoundException as exc:
+            assert exc.id == self.fake_todo.id
+
+        self.fake_todo_repository.find_by_id.assert_called_once_with(id=self.fake_todo.id)
+        self.fake_todo_repository.delete.assert_not_called()
