@@ -7,8 +7,8 @@ class TodoException(Exception):
     pass
 
 
-class CreateTodoAlreadyExistException(TodoException):
-    """CreateTodoAlreadyExistException"""
+class TodoAlreadyExistException(TodoException):
+    """TodoAlreadyExistException"""
 
     pass
 

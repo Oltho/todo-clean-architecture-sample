@@ -5,7 +5,7 @@ import pytest
 from todo_sample.entities.todo import Todo
 from todo_sample.repository.exception import AlreadyExistError
 from todo_sample.use_cases.create_todo import CreateTodo
-from todo_sample.use_cases.exceptions import CreateTodoAlreadyExistException
+from todo_sample.use_cases.exceptions import TodoAlreadyExistException
 
 MODULE = "todo_sample.use_cases.create_todo"
 
@@ -32,7 +32,7 @@ class TestCreateTodo(TestCase):
 
         try:
             self.create_todo_uc.call(title="title", description="description")
-        except CreateTodoAlreadyExistException as exc:
+        except TodoAlreadyExistException as exc:
             assert str(self.fake_todo.id) in str(exc)
 
         self.fake_todo_repository.save.assert_called_once_with(todo=self.fake_todo, create_only=True)
