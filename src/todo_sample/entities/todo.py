@@ -1,10 +1,17 @@
+import typing as _t
 import uuid
 from datetime import datetime
 
 from pydantic import BaseModel, Field, validator
 
 
-class Todo(BaseModel):
+class TodoUpdate(BaseModel):
+    title: _t.Optional[str] = None
+    description: _t.Optional[str] = None
+    done: _t.Optional[bool] = None
+
+
+class Todo(TodoUpdate):
     id: uuid.UUID = Field(default_factory=uuid.uuid4)
     title: str
     description: str
