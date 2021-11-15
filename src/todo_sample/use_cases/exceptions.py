@@ -1,20 +1,14 @@
 from uuid import UUID
 
 
-class CreateTodoException(Exception):
-    """CreateTodoException"""
-
-    pass
-
-
-class CreateTodoAlreadyExistException(CreateTodoException):
-    """CreateTodoAlreadyExistException"""
-
-    pass
-
-
 class TodoException(Exception):
     """TodoException"""
+
+    pass
+
+
+class CreateTodoAlreadyExistException(TodoException):
+    """CreateTodoAlreadyExistException"""
 
     pass
 
