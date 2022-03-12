@@ -36,3 +36,6 @@ dmypy.json
 # IDE
 .vscode/
 .idea/
+
+# generated artifact for CI
+output/
