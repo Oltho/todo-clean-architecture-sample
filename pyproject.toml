@@ -46,7 +46,8 @@ norecursedirs = [
     "dist",
     "build",
     ".tox",
-    "venv"
+    "venv",
+    ".venv"
 ]
 testpaths = ["tests"]
 
@@ -92,4 +93,5 @@ extend-exclude = '''
 dist
 build
 venv
+.venv
 '''
