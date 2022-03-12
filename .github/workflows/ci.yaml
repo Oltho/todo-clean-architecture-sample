@@ -24,8 +24,8 @@ jobs:
           pip install -U wheel
           pip install -U setuptools
 
-      - name: install tox
-        run: pip install tox
+      - name: install poetry
+        run: pip install poetry
 
       - name: run tox testing
-        run: tox
+        run: poetry run tox
