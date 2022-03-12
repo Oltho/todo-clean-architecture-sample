@@ -39,16 +39,16 @@ black = "^21.10b0"
 mypy = "^0.910"
 types-toml = "^0.10.1"
 
-# [tool.pytest.ini_options]
-# # https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
-# addopts = "--cov todo_sample --cov-report term-missing --verbose"
-# norecursedirs = [
-#     "dist",
-#     "build",
-#     ".tox",
-#     "venv"
-# ]
-# testpaths = ["tests"]
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/6.2.x/customize.html#pyproject-toml
+addopts = "--cov todo_sample --cov-report term-missing --verbose"
+norecursedirs = [
+    "dist",
+    "build",
+    ".tox",
+    "venv"
+]
+testpaths = ["tests"]
 
 
 [tool.isort]
