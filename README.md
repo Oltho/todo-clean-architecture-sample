@@ -8,6 +8,8 @@ This is a simple todo application packaged for pypi.
 pip install todo-clean-architecture-sample
 ```
 
+_Note: package is not yet published_
+
 ## Usage
 
 TBD
@@ -18,11 +20,12 @@ TBD
 ### Requirements
 
 - python >= 3.7
-- tox
+- poetry
 
 ```
 git clone https://github.com/Oltho/todo-clean-architecture-sample.git
 cd todo-clean-architecture-sample
+poetry install
 ```
 
 ### Pre-commit check
@@ -46,23 +49,14 @@ List of environments availables:
 - `isort`: run isort linter
 - `black`: run black code formating
 - `mypy`: run mypy type checker
-- `linters`: run `flake8, isort, black, mypy` tox environments
+- `linters`: run `flake8, isort, black` tox environments
 - `bandit`: run bandit AST
 - `safety`: run safety dependencies check
 - `security`: run `bandit, safety` tox environments
 
-You can also just run the `tox` command that will run `linters, security` environments.
+You can also just run the `tox` command that will run `default(pytest), linters, mypy, security` environments.
 
-#### Local:
-If you can to run test locally without tox.
-
-Install the package locally with its extras `pip install -e ".[all]"`
-
-You can then use the same command as defined in `tox.ini` under `commands` section of each environments.
-
-These same command are in the `Makefile` and can be use with `make`, but we recommand to run it through `tox` to ensure clean and isolated python enviroment.
-
-You might need to update your `PYTHONPATH` so your tests can detect code in `src`: `export PYTHONPATH=<path_to_the_project>/src`
+_Note: you might need to prepend `poetry run` in front of your command eg: `poetry run tox`_
 
 
 # Todo
@@ -72,7 +66,6 @@ You might need to update your `PYTHONPATH` so your tests can detect code in `src
 - Handle semver
 - Automated github release
 - CI:
-    - github action
     - jenkins
 
 
@@ -84,3 +77,4 @@ Inspired by:
 - [pyscaffold](https://github.com/pyscaffold/pyscaffold)
 - [flask](https://github.com/pallets/flask)
 - [django](https://github.com/django/django)
+- [install-poetry](https://github.com/snok/install-poetry)
