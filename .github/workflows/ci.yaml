@@ -24,8 +24,8 @@ jobs:
           pip install -U wheel
           pip install -U setuptools
 
-      - name: install poetry
-        run: pip install poetry
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
 
       - name: run tox testing
         run: poetry run tox
