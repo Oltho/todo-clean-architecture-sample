@@ -38,4 +38,5 @@ dmypy.json
 .idea/
 
 # generated artifact for CI
-output/
+output/*
+!output/.keepme
